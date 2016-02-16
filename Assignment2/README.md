@@ -1,4 +1,4 @@
-# Assignment 2, CMSC724, Spring 2016
+# Assignment 2, CMSC724, Spring 2016, Due Tuesday February 23, 2016
 
 *The assignment is to be done by yourself.*
 
