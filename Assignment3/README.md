@@ -24,6 +24,11 @@ Spark can be used with the Hadoop ecosystem, including the HDFS file system and 
 
 We are ready to use Spark. 
 
+### Installing SBT
+
+You should also install `sbt`. You can do the assignment without it, but it will make things easier (if you are familiar with `mvn`, `sbt` is similar).
+Follow the directions here: [SBT](http://www.scala-sbt.org/release/docs/Setup.html)
+
 ### Using Spark
 
 Spark provides support for three languages: Scala (Spark is written in Scala), Java, and Python. We will use Scala here -- you can follow the instructions at the tutorial
