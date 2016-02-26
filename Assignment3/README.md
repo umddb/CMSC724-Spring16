@@ -16,10 +16,10 @@ Spark can be used with the Hadoop ecosystem, including the HDFS file system and 
 ### Installing Spark
 
 1. Download the Spark package at http://spark.apache.org/downloads.html. We will use **Version 1.6.0, Pre-built for CDH 4**.
-2. Move the downloaded file to the `/home/terrapin/spark` directory (or somewhere else), and uncompress it using: 
+2. Move the downloaded file to the `Assignment3` directory (or somewhere else), and uncompress it using: 
 `tar zxvf spark-1.6.0-bin-cdh4.tgz`
 3. This will create a new directory: `spark-1.6.0-bin-cdh4`. 
-4. Set the SPARKHOME variable: `export SPARKHOME=XXX/spark-1.6.0-bin-cdh4` (modify according to where you uncompressed it)
+4. Set the SPARKHOME variable: `export SPARKHOME=XXX/Assignment3/spark-1.6.0-bin-cdh4` (modify according to where you uncompressed it)
 5. If you want to reduce the amount of output that SPARK is producing, copy the `log4j.properties` file into `$SPARKHOME/conf`.
 
 We are ready to use Spark. 
@@ -35,7 +35,7 @@ and there are also quite a few tutorials out there. For this assignment, we will
 to learn and try to provide sufficient guidance.
 
 
-1. `./bin/spark-shell`: This will start a Scala shell (it will also output a bunch of stuff about what Spark is doing). The relevant variables are initialized in this shell, but otherwise it is just a standard Scala shell.
+1. `$SPARKHOME/bin/spark-shell`: This will start a Scala shell (it will also output a bunch of stuff about what Spark is doing). The relevant variables are initialized in this shell, but otherwise it is just a standard Scala shell.
 
 2. `> val textFile = sc.textFile("README.md")`: This creates a new RDD, called `textFile`, by reading data from a local file. The `sc.textFile` commands create an RDD
 containing one entry per line in the file.
@@ -50,19 +50,19 @@ application.
 
 `val counts = textFile.flatMap(line => line.split(" ")).map(word => (word, 1)).reduceByKey((a, b)  => a + b)`
 
-The `flatmap` splits each line into words, and the following `map` and `reduce` basically do the word count (in a similar fashion to standard MapReduce wordcount -- see, e.g., [link](http://kickstarthadoop.blogspot.com/2011/04/word-count-hadoop-map-reduce-example.html).
+The `flatmap` splits each line into words, and the following `map` and `reduce` basically do the word count (in a similar fashion to standard MapReduce wordcount -- see, e.g., [link](http://kickstarthadoop.blogspot.com/2011/04/word-count-hadoop-map-reduce-example.html)).
 
 ### SimpleApp.scala
 
 The file `src/main/scala/SimpleApp.scala` contains the code to construct a few more RDDs (using the data files in the `Assignment3` directory), and some examples of operations on them. You can try running the code using `spark-shell` as above (cut-n-paste). Start with the code in the `main` function.
 
-You can also directly execute the file. For this, you must first assempt a jar file using `sbt package` command.
+You can also directly execute the file. For this, you must first assemble a jar file using `sbt package` command.
 Then the following command executes the Spark job in a local manner (a simple change to the command can do this on a cluster, assuming you have
 the cluster already running).
 
 `$SPARKHOME/bin/spark-submit --class "SimpleApp" --master "local[4]" target/scala-2.10/simple-project_2.10-1.0.jar`
 
-Copy the `log4j.properties` file to the SPARKHOME/conf directory to avoid spurious logging output.
+Copy the `log4j.properties` file to the $SPARKHOME/conf directory to avoid spurious logging output.
 
 
 
